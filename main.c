@@ -1,9 +1,35 @@
 #include <stdio.h>
 
-void bookTkt(){
+
+
+
+// void tktHistory(char user[]){
+//     printf("history of %s",user);
+// }
+
+// void bookTkt(char user[]){
+//     printf("Ticket booked for %s",user);
+
+void userDash(char user[]){
+    int ch;
+    printf("Choose one option:\n\n1.Book ticket\n2.See Booking History");
+    scanf("%d",&ch);
+    switch(ch){
+        case 1:
+            // bookTkt(user);
+            printf("booking on");
+            break;
+        case 2:
+            // tktHistory(user);
+            printf("see history");
+            break;
+        default:
+            printf("Wrong choice");
+            userDash(user);
+
+    }
 
 }
-
 
 void login(){
     FILE* ptr = fopen("userdata.txt", "r");
@@ -36,7 +62,8 @@ void login(){
         }
         else if(strcmp(buf,authstr)==0){
             fclose(ptr);
-            printf("auth succeess");
+            printf("user auth succeess");
+            userDash(chk_username);
             break;
         }
     }
@@ -48,5 +75,6 @@ void login(){
 void main(){
 
     login();
+
 }
 
