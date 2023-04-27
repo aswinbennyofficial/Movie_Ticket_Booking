@@ -1,5 +1,40 @@
 #include <stdio.h>
 
+
+void movieList(){
+    #define MAX_LINES 100
+    #define MAX_LENGTH 100
+    char str[MAX_LENGTH];
+    char lines[MAX_LINES][MAX_LENGTH];
+    int i = 0;
+    FILE *fp = fopen("movieslist.txt", "r");
+    if (fp == NULL) {
+        printf("Error: could not open file.\n");
+        return 1;
+    }
+
+    while (fgets(str, MAX_LENGTH, fp) != NULL) {
+        str[strcspn(str, "\n")] = '\0'; // remove newline character from input
+        strncpy(lines[i], str, MAX_LENGTH);
+        i++;
+        if (i >= MAX_LINES) {
+            printf("Error: too many lines in file.\n");
+            return 1;
+        }
+    }
+
+    fclose(fp);
+
+    // Print the array to verify that it was filled correctly
+    for (int j = 0; j < i; j++) {
+        printf("%s\n", lines[j]);
+    }
+
+    return 0;
+
+
+}
+
 void adminDash(){
     printf("welcome admin");
 }
@@ -33,24 +68,11 @@ void createAccount(){
 
 
 void userDash(char user[]){
-    int ch;
+    int ch2;
     printf("\nWelome %s\n",user);
-    printf("Choose one option:\n\n1.Book ticket\n2.See Booking History");
-    scanf("%d",&ch);
-    switch(ch){
-        case 1:
-            // bookTkt(user);
-            printf("booking on");
-            break;
-        case 2:
-            // tktHistory(user);
-            printf("see history");
-            break;
-        default:
-            printf("Wrong choice");
-            userDash(user);
-
-    }
+    printf("Choose one option:\n1.Running Movies\n2.Book ticket\n3.See Booking History\n");
+    scanf(" %d",&ch2);
+        printf("%d",ch2);
 
 }
 
@@ -75,10 +97,9 @@ void login(){
     }
 
     if(strcmp(authstr,"adminpass")==0){
-
+        fclose(fp);
         printf("admin auth succeess\n");
         adminDash();
-        fclose(fp);
         return;
 
 
@@ -104,8 +125,6 @@ void login(){
         login();
     }
     return 0;
-
-
 }
 
 
