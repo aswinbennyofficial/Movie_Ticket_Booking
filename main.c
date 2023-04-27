@@ -68,11 +68,23 @@ void createAccount(){
 
 
 void userDash(char user[]){
-    int ch2;
+    int ch;
     printf("\nWelome %s\n",user);
     printf("Choose one option:\n1.Running Movies\n2.Book ticket\n3.See Booking History\n");
-    scanf(" %d",&ch2);
-        printf("%d",ch2);
+    scanf("%d",&ch);
+    if(ch==1){
+        printf("Running movies are: \n");
+        movieList();
+    }
+    else if(ch==2){
+        printf("Booking ticket...");
+    }
+    else if(ch==3){
+        printf("Seeing booking History");
+    }
+    else{
+        userDash(user);
+    }
 
 }
 
@@ -108,7 +120,7 @@ void login(){
     while (fgets(str, 100, fp) != NULL) {
         str[strcspn(str, "\n")] = '\0'; // remove newline character from input
         if (strcmp(str, authstr) == 0) {
-            fclose(fp);
+            //fclose(fp);
             printf("user auth succeess");
             userDash(chk_username);
             break;
