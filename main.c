@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+void BookTkt(char user[]){
+    printf("Inside book tkt function");
+
+
+}
 
 void movieList(char user[]){
     #define MAX_LINES 100
@@ -30,7 +35,7 @@ void movieList(char user[]){
         printf("%s\n", lines[j]);
     }
 
-    userDash(user);
+    //userDash(user);
     return 0;
 
 
@@ -85,9 +90,10 @@ void userDash(char user[]){
     if(ch==1){
         printf("Running movies are: \n");
         movieList(user);
+        userDash(user);
     }
     else if(ch==2){
-        printf("Booking ticket...");
+        BookTkt(user);
     }
     else if(ch==3){
         printf("Seeing booking History");
