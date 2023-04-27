@@ -1,12 +1,17 @@
 #include <stdio.h>
-
-
 char lines[100][100];
+
+
+void paymentGateway(){
+    printf("Payment gateway says Hi");
+
+}
 
 void BookTkt(char user[]){
     char selectedMovie[100]; // saves the movie which user wants to.
     char seat; //saves whether balcony or nomal
     int no_Of_Tickets,price;
+    int ch; //choice whether to purchase ticket or cancel it
 
     int i=runningMovies(),j;
     printf("Choose the movie:\n");
@@ -36,6 +41,17 @@ void BookTkt(char user[]){
     price=price*no_Of_Tickets;
 
     printf("Total price would be: %d\n\n",price);
+
+    printf("Are you sure you want to purchase the ticket?\nPress Y to purchase and N to cancel\n");
+    scanf(" %c",&ch);
+
+    if(ch=='Y'){
+        paymentGateway();
+    }
+    else{
+        userDash(user);
+    }
+
 
 
 
