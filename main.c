@@ -4,13 +4,15 @@
 char lines[100][100];
 
 void BookTkt(char user[]){
-    movieList();
-    printf("Inside book tkt function %s",lines[0]);
-
+    int i=runningMovies(),j;
+    printf("Choose the movie: ");
+    for(j=0;j<i;j++){
+        printf("%d -- %s/n",j+1,lines[j]);
+    }
 
 }
 
-void movieList(char user[]){
+int runningMovies(){
     #define MAX_LINES 100
     #define MAX_LENGTH 100
     char str[MAX_LENGTH];
@@ -35,12 +37,10 @@ void movieList(char user[]){
     fclose(fp);
 
     // Print the array to verify that it was filled correctly
-    for (int j = 0; j < i; j++) {
-        printf("%s\n", lines[j]);
-    }
+
 
     //userDash(user);
-    return;
+    return i;
 
 
 }
@@ -93,7 +93,11 @@ void userDash(char user[]){
     scanf("%d",&ch);
     if(ch==1){
         printf("Running movies are: \n");
-        movieList(user);
+        int i=runningMovies(),j;
+        for (j = 0; j < i; j++) {
+            printf("%s\n", lines[j]);
+        }
+
         userDash(user);
     }
     else if(ch==2){
