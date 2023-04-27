@@ -1,7 +1,11 @@
 #include <stdio.h>
 
+
+char lines[100][100];
+
 void BookTkt(char user[]){
-    printf("Inside book tkt function");
+    movieList();
+    printf("Inside book tkt function %s",lines[0]);
 
 
 }
@@ -10,7 +14,7 @@ void movieList(char user[]){
     #define MAX_LINES 100
     #define MAX_LENGTH 100
     char str[MAX_LENGTH];
-    char lines[MAX_LINES][MAX_LENGTH];
+    //char lines[MAX_LINES][MAX_LENGTH];
     int i = 0;
     FILE *fp = fopen("movieslist.txt", "r");
     if (fp == NULL) {
@@ -36,7 +40,7 @@ void movieList(char user[]){
     }
 
     //userDash(user);
-    return 0;
+    return;
 
 
 }
