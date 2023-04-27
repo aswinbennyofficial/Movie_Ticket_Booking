@@ -2,7 +2,7 @@
 char lines[100][100];
 
 void bookHistory(char user[]){
-    printf("Booking history module says hi");
+    printf("Booking history for the user %s\n\n\n",user);
 
     char filename[100];
     sprintf(filename, "%s.txt", user);
@@ -17,14 +17,14 @@ void bookHistory(char user[]){
     while ((c = fgetc(ft)) != EOF) {
         putchar(c);
     }
-
+    printf("-------------------------\n\n");
     fclose(ft);
 
-    userDash();
+    userDash(user);
 }
 
 void paymentGateway(char user[],char selectedMovie[],char seat,int no_Of_Tickets,int price){
-    printf("Payment gateway says Hi");
+    printf("Initialising Payment\n");
     //printf("\n\n%s \n%s \n%c \n%d \n%d",user,selectedMovie,seat,no_Of_Tickets,price);
     //printf("%s",selectedMovie);
     char filename[50];
