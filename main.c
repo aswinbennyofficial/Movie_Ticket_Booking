@@ -1,6 +1,27 @@
 #include <stdio.h>
 char lines[100][100];
 
+void bookHistory(char user[]){
+    printf("Booking history module says hi");
+
+    char filename[100];
+    sprintf(filename, "%s.txt", user);
+
+    FILE *ft = fopen(filename, "r");
+    if (ft == NULL) {
+        printf("Error: could not open file.\n");
+        return 1;
+    }
+
+    char c;
+    while ((c = fgetc(ft)) != EOF) {
+        putchar(c);
+    }
+
+    fclose(ft);
+
+    userDash();
+}
 
 void paymentGateway(char user[],char selectedMovie[],char seat,int no_Of_Tickets,int price){
     printf("Payment gateway says Hi");
@@ -15,13 +36,13 @@ void paymentGateway(char user[],char selectedMovie[],char seat,int no_Of_Tickets
     }
 
     char bookingString[100];
-    sprintf(bookingString, "** Selected Movie: %s\tSeat Number: %c\tNumber of Tickets: %d\tPrice: %d\n", selectedMovie, seat, no_Of_Tickets, price);
+    sprintf(bookingString, "** Selected Movie: %s\tSeat Type: %c\tNumber of Tickets: %d\tPrice: %d \n\n", selectedMovie, seat, no_Of_Tickets, price);
 
     fputs(bookingString, fp);
     fclose(fp);
 
     printf("\nPurchase was successfull\n\n");
-    adminDash(user);
+    userDash(user);
 }
 
 int runningMovies(){
@@ -68,7 +89,7 @@ void BookTkt(char user[]){
         printf("%d -- %s\n",j+1,lines[j]);
     }
     scanf("%d",&j);
-    strcpy(selectedMovie,lines[j]);
+    strcpy(selectedMovie,lines[j-1]);
     //printf("%s",selectedMovie);
 
     printf("====Balcony seat price = Rs.120=====\n");
@@ -168,7 +189,7 @@ void userDash(char user[]){
         BookTkt(user);
     }
     else if(ch==3){
-        printf("Seeing booking History");
+        bookHistory(user);
     }
     else{
         userDash(user);
