@@ -4,11 +4,40 @@
 char lines[100][100];
 
 void BookTkt(char user[]){
+    char selectedMovie[100]; // saves the movie which user wants to.
+    char seat; //saves whether balcony or nomal
+    int no_Of_Tickets,price;
+
     int i=runningMovies(),j;
-    printf("Choose the movie: ");
+    printf("Choose the movie:\n");
     for(j=0;j<i;j++){
-        printf("%d -- %s/n",j+1,lines[j]);
+        printf("%d -- %s\n",j+1,lines[j]);
     }
+    scanf("%d",&j);
+    selectedMovie[0]=lines[j];
+
+    printf("====Balcony seat price = Rs.120=====\n");
+    printf(" ====Normal seat price = Rs.70=====\n\n");
+    printf("Enter B for balcony and N for normal...\n");
+    printf("Select the seat: \n");
+
+    scanf(" %c",&seat);
+
+    if(seat=='B'){
+        price=120;
+    }
+    else{
+        price=70;
+    }
+
+    printf("Enter the number of tickets required:\n");
+    scanf("%d",&no_Of_Tickets);
+
+    price=price*no_Of_Tickets;
+
+    printf("Total price would be: %d\n\n",price);
+
+
 
 }
 
