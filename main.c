@@ -4,8 +4,24 @@ char lines[100][100];
 
 void paymentGateway(char user[],char selectedMovie[],char seat,int no_Of_Tickets,int price){
     printf("Payment gateway says Hi");
-    //printf("%s %s %c %d %d",user,selectedMovie,seat,no_Of_Tickets,price);
+    //printf("\n\n%s \n%s \n%c \n%d \n%d",user,selectedMovie,seat,no_Of_Tickets,price);
     //printf("%s",selectedMovie);
+    char filename[50];
+    sprintf(filename, "%s.txt", user);
+    FILE *fp = fopen(filename, "a");
+    if (fp == NULL) {
+        printf("Error: could not open file for writing.\n");
+        return;
+    }
+
+    char bookingString[100];
+    sprintf(bookingString, "** Selected Movie: %s\tSeat Number: %c\tNumber of Tickets: %d\tPrice: %d\n", selectedMovie, seat, no_Of_Tickets, price);
+
+    fputs(bookingString, fp);
+    fclose(fp);
+
+    printf("\nPurchase was successfull\n\n");
+    adminDash(user);
 }
 
 int runningMovies(){
