@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 
-void movieList(){
+void movieList(char user[]){
     #define MAX_LINES 100
     #define MAX_LENGTH 100
     char str[MAX_LENGTH];
@@ -30,6 +30,7 @@ void movieList(){
         printf("%s\n", lines[j]);
     }
 
+    userDash(user);
     return 0;
 
 
@@ -70,11 +71,20 @@ void createAccount(){
 void userDash(char user[]){
     int ch;
     printf("\nWelome %s\n",user);
-    printf("Choose one option:\n1.Running Movies\n2.Book ticket\n3.See Booking History\n");
+    printf("\n-------------------------------------------------------------------");
+	printf("\n");
+	printf("\t Movie Ticket booking ");
+	printf("\n");
+	printf("\n-------------------------------------------------------------------");
+    printf("\n\tPress <1> View All Movie");
+	printf("\n\tPress <2> Book Ticket");
+	printf("\n\tPress <3> View All Booking history");
+   	//printf("\n\tPress <0> Exit ");
+    printf("\nEnter your choice:   ");
     scanf("%d",&ch);
     if(ch==1){
         printf("Running movies are: \n");
-        movieList();
+        movieList(user);
     }
     else if(ch==2){
         printf("Booking ticket...");
