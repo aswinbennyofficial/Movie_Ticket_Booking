@@ -2,59 +2,10 @@
 char lines[100][100];
 
 
-void paymentGateway(){
+void paymentGateway(char user[],char selectedMovie[],char seat,int no_Of_Tickets,int price){
     printf("Payment gateway says Hi");
-
-}
-
-void BookTkt(char user[]){
-    char selectedMovie[100]; // saves the movie which user wants to.
-    char seat; //saves whether balcony or nomal
-    int no_Of_Tickets,price;
-    int ch; //choice whether to purchase ticket or cancel it
-
-    int i=runningMovies(),j;
-    printf("Choose the movie:\n");
-    for(j=0;j<i;j++){
-        printf("%d -- %s\n",j+1,lines[j]);
-    }
-    scanf("%d",&j);
-    selectedMovie[0]=lines[j];
-
-    printf("====Balcony seat price = Rs.120=====\n");
-    printf(" ====Normal seat price = Rs.70=====\n\n");
-    printf("Enter B for balcony and N for normal...\n");
-    printf("Select the seat: \n");
-
-    scanf(" %c",&seat);
-
-    if(seat=='B'){
-        price=120;
-    }
-    else{
-        price=70;
-    }
-
-    printf("Enter the number of tickets required:\n");
-    scanf("%d",&no_Of_Tickets);
-
-    price=price*no_Of_Tickets;
-
-    printf("Total price would be: %d\n\n",price);
-
-    printf("Are you sure you want to purchase the ticket?\nPress Y to purchase and N to cancel\n");
-    scanf(" %c",&ch);
-
-    if(ch=='Y'){
-        paymentGateway();
-    }
-    else{
-        userDash(user);
-    }
-
-
-
-
+    //printf("%s %s %c %d %d",user,selectedMovie,seat,no_Of_Tickets,price);
+    //printf("%s",selectedMovie);
 }
 
 int runningMovies(){
@@ -87,8 +38,60 @@ int runningMovies(){
     //userDash(user);
     return i;
 
+}
+
+void BookTkt(char user[]){
+    char selectedMovie[100]; // saves the movie which user wants to.
+    char seat; //saves whether balcony or nomal
+    int no_Of_Tickets,price;
+    int ch; //choice whether to purchase ticket or cancel it
+
+    int i=runningMovies(),j;
+    printf("Choose the movie:\n");
+    for(j=0;j<i;j++){
+        printf("%d -- %s\n",j+1,lines[j]);
+    }
+    scanf("%d",&j);
+    strcpy(selectedMovie,lines[j]);
+    //printf("%s",selectedMovie);
+
+    printf("====Balcony seat price = Rs.120=====\n");
+    printf(" ====Normal seat price = Rs.70=====\n\n");
+    printf("Enter B for balcony and N for normal...\n");
+    printf("Select the seat: \n");
+
+    scanf(" %c",&seat);
+
+    if(seat=='B' || seat=='b'){
+        price=120;
+    }
+    else{
+        price=70;
+    }
+
+    printf("Enter the number of tickets required:\n");
+    scanf("%d",&no_Of_Tickets);
+
+    price=price*no_Of_Tickets;
+
+    printf("Total price would be: %d\n\n",price);
+
+    printf("Are you sure you want to purchase the ticket?\nPress Y to purchase and N to cancel\n");
+    scanf(" %c",&ch);
+
+    if(ch=='Y' || ch=='y'){
+        paymentGateway(user,selectedMovie,seat,no_Of_Tickets,price);
+    }
+    else{
+        userDash(user);
+    }
+
+
+
 
 }
+
+
 
 void adminDash(){
     printf("welcome admin");
