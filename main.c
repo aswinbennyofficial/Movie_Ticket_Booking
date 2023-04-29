@@ -31,8 +31,8 @@ void paymentGateway(char user[],char selectedMovie[],char seat,int no_Of_Tickets
     sprintf(filename, "%s.txt", user);
     FILE *fp = fopen(filename, "a");
     if (fp == NULL) {
-        printf("Error: could not open file for writing.\n");
-        return;
+        printf("Error: not an existing user\n");
+        //return;
     }
 
     char bookingString[100];
@@ -173,6 +173,7 @@ void userDash(char user[]){
     printf("\n\tPress <1> View All Movie");
 	printf("\n\tPress <2> Book Ticket");
 	printf("\n\tPress <3> View All Booking history");
+	printf("\n\tPress <4> Logout");
    	//printf("\n\tPress <0> Exit ");
     printf("\nEnter your choice:   ");
     scanf("%d",&ch);
@@ -190,6 +191,9 @@ void userDash(char user[]){
     }
     else if(ch==3){
         bookHistory(user);
+    }
+    else if(ch==4){
+        main();
     }
     else{
         userDash(user);
