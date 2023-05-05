@@ -94,8 +94,9 @@ void BookTkt(char user[]){
 
     printf("====Balcony seat price = Rs.120=====\n");
     printf(" ====Normal seat price = Rs.70=====\n\n");
-    printf("Enter B for balcony and N for normal...\n");
+    printf("<<<<<<<<<<<< Enter <B> for balcony and <N> for normal >>>>>>>>>>>>>\n");
     printf("Select the seat: \n");
+
 
     scanf(" %c",&seat);
 
@@ -113,7 +114,7 @@ void BookTkt(char user[]){
 
     printf("Total price would be: %d\n\n",price);
 
-    printf("Are you sure you want to purchase the ticket?\nPress Y to purchase and N to cancel\n");
+    printf("Are you sure you want to purchase the ticket?\n<<<<<<<<<<<< Press <Y> to purchase and <N> to cancel >>>>>>>>>>>>\n");
     scanf(" %c",&ch);
 
     if(ch=='Y' || ch=='y'){
@@ -174,6 +175,7 @@ void userDash(char user[]){
 	printf("\n\tPress <2> Book Ticket");
 	printf("\n\tPress <3> View All Booking history");
 	printf("\n\tPress <4> Logout");
+	printf("\n=========================================================================");
    	//printf("\n\tPress <0> Exit ");
     printf("\nEnter your choice:   ");
     scanf("%d",&ch);
