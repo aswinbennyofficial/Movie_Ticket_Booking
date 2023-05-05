@@ -1,11 +1,11 @@
 #include <stdio.h>
-char lines[100][100];
+char lines[100][100]; //saves currently running movies
 
 void bookHistory(char user[]){
     printf("Booking history for the user %s\n\n\n",user);
 
     char filename[100];
-    sprintf(filename, "%s.txt", user);
+    sprintf(filename, "%s.txt", user); // creates a new string that takes user variable makes {user}.txt and saves it to filename
 
     FILE *ft = fopen(filename, "r");
     if (ft == NULL) {
@@ -28,7 +28,7 @@ void paymentGateway(char user[],char selectedMovie[],char seat,int no_Of_Tickets
     //printf("\n\n%s \n%s \n%c \n%d \n%d",user,selectedMovie,seat,no_Of_Tickets,price);
     //printf("%s",selectedMovie);
     char filename[50];
-    sprintf(filename, "%s.txt", user);
+    sprintf(filename, "%s.txt", user);  // creates a new string that takes user variable makes {user}.txt and saves it to filename
     FILE *fp = fopen(filename, "a");
     if (fp == NULL) {
         printf("Error: not an existing user\n");
@@ -36,9 +36,11 @@ void paymentGateway(char user[],char selectedMovie[],char seat,int no_Of_Tickets
     }
 
     char bookingString[100];
+
+            // below code makes a formated string of movie selected, seat, no of ticketc etc.. and saves it to bookingString variable
     sprintf(bookingString, "** Selected Movie: %s\tSeat Type: %c\tNumber of Tickets: %d\tPrice: %d \n\n", selectedMovie, seat, no_Of_Tickets, price);
 
-    fputs(bookingString, fp);
+    fputs(bookingString, fp); //appends booking string to fp
     fclose(fp);
 
     printf("\nPurchase was successfull\n\n");
@@ -50,7 +52,7 @@ int runningMovies(){
     #define MAX_LENGTH 100
     char str[MAX_LENGTH];
     //char lines[MAX_LINES][MAX_LENGTH];
-    int i = 0;
+    int i = 0;  //initialise i as 0, it is the index of array lines also shows number of movies running
     FILE *fp = fopen("movieslist.txt", "r");
     if (fp == NULL) {
         printf("Error: could not open file.\n");
@@ -59,8 +61,8 @@ int runningMovies(){
 
     while (fgets(str, MAX_LENGTH, fp) != NULL) {
         str[strcspn(str, "\n")] = '\0'; // remove newline character from input
-        strncpy(lines[i], str, MAX_LENGTH);
-        i++;
+        strncpy(lines[i], str, MAX_LENGTH); // saves each line of file ie.. running movies to i'th index a global 2D char array lines
+        i++; // i is incremented
         if (i >= MAX_LINES) {
             printf("Error: too many lines in file.\n");
             return 1;
@@ -69,11 +71,8 @@ int runningMovies(){
 
     fclose(fp);
 
-    // Print the array to verify that it was filled correctly
 
-
-    //userDash(user);
-    return i;
+    return i; // returns i that will be the number of running movies
 
 }
 
@@ -83,13 +82,14 @@ void BookTkt(char user[]){
     int no_Of_Tickets,price;
     int ch; //choice whether to purchase ticket or cancel it
 
-    int i=runningMovies(),j;
+    int i=runningMovies(),j; // initialises j, saves number running movies to i and also intialises global variables lines with the current running movies
     printf("Choose the movie:\n");
     for(j=0;j<i;j++){
-        printf("%d -- %s\n",j+1,lines[j]);
+        printf("%d -- %s\n",j+1,lines[j]); // iterates through every index and gives user the choice to select the movie
     }
     scanf("%d",&j);
-    strcpy(selectedMovie,lines[j-1]);
+    strcpy(selectedMovie,lines[j-1]); // saves the movie user has chosen to selectedMovie variable
+
     //printf("%s",selectedMovie);
 
     printf("====Balcony seat price = Rs.120=====\n");
@@ -150,9 +150,9 @@ void createAccount(){
         printf("Now enter Password: \n");
         scanf(" %s",&pass);
 
-        strcat(id,pass);
+        strcat(id,pass); //concatenames password to end of id
         printf("Account Created successfully \n\n\n ",id);
-        fprintf(file,id );
+        fprintf(file,id ); //append the username+pass combo in userdata.txt
         fprintf(file, "\n");
         fclose(file);
         printf("Please Login with the new ID\n");
@@ -179,7 +179,7 @@ void userDash(char user[]){
     scanf("%d",&ch);
     if(ch==1){
         printf("Running movies are: \n");
-        int i=runningMovies(),j;
+        int i=runningMovies(),j; // initialises j, saves number running movies to i and also intialises global variables lines with the current running movies
         for (j = 0; j < i; j++) {
             printf("%s\n", lines[j]);
         }
@@ -221,7 +221,7 @@ void login(){
         return 1;
     }
 
-    if(strcmp(authstr,"adminpass")==0){
+    if(strcmp(authstr,"adminpass")==0){ //compares string if authstr is adminpass or not
         fclose(fp);
         printf("admin auth succeess\n");
         adminDash();
@@ -232,7 +232,7 @@ void login(){
 
     while (fgets(str, 100, fp) != NULL) {
         str[strcspn(str, "\n")] = '\0'; // remove newline character from input
-        if (strcmp(str, authstr) == 0) {
+        if (strcmp(str, authstr) == 0) { //compares individual lines of userdata.txt to authstr
             //fclose(fp);
             printf("user auth succeess");
             userDash(chk_username);
